@@ -227,7 +227,7 @@ open class FlatButton: NSButton, CALayerDelegate {
             imageRect.origin.x = bounds.width - imageRect.width - hSpacing
             break
         default:
-            titleRect.origin.y = round((bounds.height - titleSize.height)/2)
+            titleRect.origin.y = round((bounds.height - titleSize.height)/2) + 2.0
             titleRect.origin.x = round((bounds.width - titleSize.width)/2)
         }
         iconLayer.frame = imageRect
@@ -328,6 +328,7 @@ open class FlatButton: NSButton, CALayerDelegate {
     }
     
     override open func mouseDown(with event: NSEvent) {
+        print("Mousedown")
         if isEnabled {
             mouseDown = true
             setOn(state == .on ? false : true)
@@ -342,7 +343,10 @@ open class FlatButton: NSButton, CALayerDelegate {
     
     override open func mouseExited(with event: NSEvent) {
         if mouseDown {
+            print("mouse exited and mousedown")
+            print(state)
             setOn(state == .on ? false : true)
+            print(state)
             mouseDown = false
         }
     }
